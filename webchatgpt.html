@@ -1,0 +1,25 @@
+Corregido en [index.html](C:\Users\gomez\Documents\Codex\2026-04-30\mejora-el-codigo-de-esta-pagina\index.html:263). El
+problema era el `line-height` del `h1`: estaba muy ajustado para una tipografía con descendentes como “y” y “g”. Le di
+más altura, `padding-bottom` y aseguré que el `strong` tenga aire vertical, así no se corta el título.
+
+Para comprar dominio y subir la página:
+
+1. Elegí el dominio: por ejemplo `vaoconsultoria.com`, `vaoconsultoria.com.ar` o `vao.com.ar`.
+2. Si querés `.com.ar` o `.ar`, hacelo desde [NIC Argentina](https://nic.ar/ayuda/instructivos/registro-de-dominio).
+Necesitás CUIT/CUIL y Clave Fiscal nivel 2 o superior. NIC indica que después de buscar disponibilidad, se registra
+desde TAD y se paga el trámite.
+3. Si querés `.com`, compralo en un registrador acreditado o reseller. ICANN explica que los dominios se registran
+mediante registradores acreditados o revendedores:
+[ICANN](https://www.icann.org/resources/pages/domain-name-registration-process-2023-11-02-en).
+4. Para subir esta página, lo más simple es usar Netlify o Cloudflare Pages. Como tu sitio es un solo HTML, no necesitás
+servidor complejo.
+5. En Netlify podés arrastrar la carpeta con tu `index.html` y te da una URL pública tipo `tusitio.netlify.app`:
+[Netlify Drag and Drop](https://docs.netlify.com/deploy/create-deploys/).
+6. En Cloudflare Pages también podés subir la carpeta por “Direct Upload” y luego conectar el dominio: [Cloudflare
+Direct Upload](https://developers.cloudflare.com/pages/get-started/direct-upload/).
+7. Después conectás el dominio al hosting cambiando los DNS. Si usás NIC Argentina, la delegación se hace cargando los
+DNS que te da tu hosting; NIC pide al menos 2 DNS: [Delegación NIC
+Argentina](https://nic.ar/es/ayuda/instructivos/delegacion-de-dominios).
+
+Mi recomendación práctica para vos: comprá `com.ar` en NIC Argentina y subí la página a Netlify. Es el camino más simple
+para una página estática como esta. Luego en Netlify agregás tu dominio propio y copiás los DNS que te indique en NIC.

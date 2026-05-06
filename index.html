@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VAO Consultoría | Gestión de Calidad ISO y Metrología</title>
+  <meta name="description"
+    content="Consultoría especializada en ISO 9001, auditorías, metrología y sistemas de gestión. 15+ años de experiencia certificada.">
+  <meta name="keywords" content="ISO 9001, auditorías, metrología, consultoría calidad, IRAM, HACCP">
+  <meta name="theme-color" content="#050505">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="VAO Consultoría | Gestión de Calidad">
+  <meta property="og:description"
+    content="Consultoría especializada en ISO 9001, auditorías, metrología y sistemas de gestión.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1600">
+
+  <link rel="icon" type="image/x-icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✓</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-primary: #050505;
+      --bg-secondary: #0b0b0c;
+      --bg-elevated: #111113;
+      --bg-card: rgba(18, 18, 20, 0.88);
+      --primary: #d8aa47;
+      --primary-dark: #9f7426;
+      --accent: #f7d98b;
+      --accent-dark: #c59032;
+      --gold-warm: #f2c766;
+      --text-primary: #fffaf0;
+      --text-secondary: #d9d1bf;
+      --text-muted: #9f9686;
+      --border-light: rgba(216, 170, 71, 0.16);
+      --border-hover: rgba(247, 217, 139, 0.42);
+      --shadow: 0 26px 70px rgba(0, 0, 0, 0.5);
+      --shadow-hover: 0 28px 70px rgba(216, 170, 71, 0.18);
+      --gradient-primary: linear-gradient(135deg, #f8e5a7 0%, #d8aa47 48%, #8e641e 100%);
+      --gradient-accent: linear-gradient(135deg, #fff4c5 0%, #e6b75a 55%, #ad7c26 100%);
+      --surface-glow: linear-gradient(145deg, rgba(255, 244, 197, 0.08), rgba(216, 170, 71, 0.035));
+      --radius-lg: 20px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background:
+        radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 20%), rgba(248, 213, 139, 0.16), transparent 19rem),
+        radial-gradient(circle at 12% 0%, rgba(216, 170, 71, 0.10), transparent 28rem),
+        linear-gradient(180deg, #050505 0%, #0a0a0b 48%, #050505 100%);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 75%);
+      z-index: -1;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      left: calc(var(--mouse-x, 50%) - 210px);
+      top: calc(var(--mouse-y, 50%) - 210px);
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(248, 213, 139, 0.24) 0%, rgba(216, 170, 71, 0.08) 28%, transparent 68%);
+      filter: blur(16px);
+      opacity: var(--cursor-opacity, 0);
+      transform: translate3d(0, 0, 0);
+      transition: opacity 0.25s ease;
+      z-index: 9999;
+    }
+
+    ::selection {
+      background: rgba(216, 170, 71, 0.35);
+      color: var(--text-primary);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(5, 5, 5, 0.84);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border-bottom: 1px solid var(--border-light);
+      padding: 1rem 0;
+      z-index: 1000;
+      transition: padding 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(5, 5, 5, 0.94);
+      padding: 0.8rem 0;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.28);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--primary);
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      white-space: nowrap;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--gradient-accent);
+      border: 1px solid rgba(255, 244, 197, 0.4);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #070707;
+      -webkit-text-fill-color: #070707;
+      box-shadow: 0 10px 28px rgba(216, 170, 71, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--accent);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -7px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-primary);
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .cta-nav {
+      padding: 10px 24px;
+      background: rgba(216, 170, 71, 0.08);
+      border: 1px solid var(--primary);
+      border-radius: 50px;
+      color: var(--accent);
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .cta-nav:hover {
+      background: var(--gradient-primary);
+      color: #080808;
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(216, 170, 71, 0.24);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 22%, rgba(247, 217, 139, 0.13) 0%, transparent 42%),
+        radial-gradient(circle at 82% 76%, rgba(216, 170, 71, 0.09) 0%, transparent 44%),
+        linear-gradient(90deg, rgba(5, 5, 5, 0.96) 0%, rgba(5, 5, 5, 0.70) 56%, rgba(5, 5, 5, 0.92) 100%);
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -12rem;
+      top: 15%;
+      width: min(48vw, 620px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(216, 170, 71, 0.2);
+      background: linear-gradient(135deg, rgba(216, 170, 71, 0.14), rgba(255, 255, 255, 0.02));
+      transform: rotate(18deg);
+      z-index: 0;
+    }
+
+    .hero-content {
+      max-width: 760px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.16;
+      margin-bottom: 1.35rem;
+      padding-bottom: 0.12em;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      overflow: visible;
+    }
+
+    .hero h1 strong {
+      display: inline-block;
+      padding-bottom: 0.08em;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      font-weight: 300;
+      max-width: 680px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      padding: 16px 40px;
+      background: var(--gradient-primary);
+      color: #080808;
+      border: 1px solid rgba(255, 244, 197, 0.35);
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover), 0 0 28px rgba(216, 170, 71, 0.22);
+    }
+
+    .btn-primary:disabled {
+      cursor: wait;
+      opacity: 0.8;
+      transform: none;
+    }
+
+    .btn-secondary {
+      padding: 16px 40px;
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--accent);
+      border: 1px solid var(--border-hover);
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(216, 170, 71, 0.12);
+      color: var(--text-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 4rem;
+      font-size: 1.1rem;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--text-secondary);
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      background: var(--gradient-accent);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.25rem;
+    }
+
+    section {
+      padding: 120px 0;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 84px;
+      height: 3px;
+      background: var(--gradient-primary);
+      border-radius: 2px;
+      box-shadow: 0 0 18px rgba(216, 170, 71, 0.32);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .tag {
+      padding: 8px 20px;
+      background: rgba(216, 170, 71, 0.08);
+      border: 1px solid var(--border-light);
+      border-radius: 25px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    .tag:hover {
+      background: var(--gradient-primary);
+      color: #080808;
+      transform: translateY(-2px);
+      border-color: rgba(255, 244, 197, 0.5);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .card {
+      background: var(--surface-glow), var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      background: radial-gradient(circle at 20% 0%, rgba(247, 217, 139, 0.13), transparent 36%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+
+    .card:hover {
+      transform: translateY(-12px);
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card:hover::after {
+      opacity: 1;
+    }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+      position: relative;
+      z-index: 1;
+    }
+
+    .card p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card i {
+      position: relative;
+      z-index: 1;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .image-block {
+      height: 400px;
+      background: linear-gradient(rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0.58)),
+        url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1600') center/cover;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      transition: all 0.4s ease;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .image-block::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(247, 217, 139, 0.18), transparent 48%);
+      mix-blend-mode: screen;
+    }
+
+    .image-block:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .clients-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .client-logo {
+      width: 100%;
+      height: 80px;
+      background: var(--surface-glow), var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      filter: grayscale(100%) brightness(0.75);
+      letter-spacing: 0.08em;
+    }
+
+    .client-logo:hover {
+      filter: grayscale(0%) brightness(1);
+      border-color: var(--border-hover);
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 20px;
+      background: rgba(18, 18, 20, 0.9);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.3s ease;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--border-hover);
+      box-shadow: 0 0 0 4px rgba(216, 170, 71, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    .form-group label {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      color: var(--text-muted);
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    .form-group:focus-within label,
+    .form-group input:not(:placeholder-shown)+label,
+    .form-group textarea:not(:placeholder-shown)+label {
+      top: -10px;
+      left: 15px;
+      font-size: 0.8rem;
+      color: var(--accent);
+      background: #101011;
+      padding: 0 8px;
+    }
+
+    .form-status {
+      display: none;
+      margin-top: 1rem;
+      padding: 14px 18px;
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      background: rgba(216, 170, 71, 0.1);
+      color: var(--accent);
+      font-weight: 600;
+      text-align: center;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    .form-status.show {
+      display: block;
+    }
+
+    .form-status.error {
+      border-color: rgba(220, 53, 69, 0.45);
+      background: rgba(220, 53, 69, 0.12);
+      color: #ffb8c0;
+    }
+
+    .whatsapp {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 65px;
+      height: 65px;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      text-decoration: none;
+    }
+
+    .whatsapp:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(37, 211, 102, 0.5);
+    }
+
+    footer {
+      background: #030303;
+      border-top: 1px solid var(--border-light);
+      padding: 60px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer h4 {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .footer p,
+    .footer a {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer a:hover {
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border-light);
+      padding-top: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-bottom a {
+      display: inline;
+    }
+
+    .fade {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade.slide-left {
+      transform: translateX(-40px);
+    }
+
+    .fade.slide-left.show {
+      transform: translateX(0);
+    }
+
+    .fade.slide-right {
+      transform: translateX(40px);
+    }
+
+    .fade.slide-right.show {
+      transform: translateX(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav-menu {
+        gap: 1rem;
+      }
+
+      .cta-nav {
+        padding: 10px 16px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+
+      .nav-container {
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.05rem;
+      }
+
+      .cta-nav {
+        font-size: 0.88rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-stats {
+        gap: 2rem;
+      }
+
+      .split {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      section {
+        padding: 80px 0;
+      }
+
+      .hero {
+        padding-top: 80px;
+      }
+
+      .whatsapp {
+        bottom: 20px;
+        right: 20px;
+        width: 55px;
+        height: 55px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 15px;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+        align-items: flex-start;
+      }
+
+      .stat {
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 2rem;
+      }
+
+      .cta-nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <div class="nav-container">
+        <a href="#home" class="logo">
+          <div class="logo-icon">✓</div>
+          <span>VAO Consultoría</span>
+        </a>
+        <ul class="nav-menu">
+          <li><a href="#home" class="nav-link">Inicio</a></li>
+          <li><a href="#servicios" class="nav-link">Servicios</a></li>
+          <li><a href="#trayectoria" class="nav-link">Trayectoria</a></li>
+          <li><a href="#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+        <a href="#contacto" class="cta-nav">Solicitar Diagnóstico</a>
+      </div>
+    </div>
+  </nav>
+
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content fade">
+        <h1>Consultoría Especializada en<br><strong>Calidad y Metrología</strong></h1>
+        <p class="hero-subtitle">15+ años certificando excelencia en sistemas de gestión ISO, auditorías y control
+          metrológico en los sectores más exigentes.</p>
+        <div class="hero-buttons">
+          <a href="#contacto" class="btn-primary">
+            <i class="fas fa-rocket"></i>
+            Solicitar Diagnóstico Gratis
+          </a>
+          <a href="#servicios" class="btn-secondary">
+            <i class="fas fa-eye"></i>
+            Ver Nuestros Servicios
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">15+</span>
+            <span>Años de experiencia</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">10+</span>
+            <span>Normas ISO implementadas</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">100%</span>
+            <span>Éxito en certificaciones</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="especialidades" class="container fade">
+    <h2 class="section-title">Nuestras Especialidades</h2>
+    <div class="tags">
+      <span class="tag">ISO 9001:2015</span>
+      <span class="tag">ISO/IEC 17025</span>
+      <span class="tag">ISO/IEC 17020</span>
+      <span class="tag">ISO 19011</span>
+      <span class="tag">ISO/IEC 17024</span>
+      <span class="tag">ISO/IEC 17011</span>
+      <span class="tag">IRAM 301</span>
+      <span class="tag">HACCP · BPM</span>
+      <span class="tag">Metrología Avanzada</span>
+    </div>
+  </section>
+
+  <section id="servicios" class="container fade">
+    <h2 class="section-title">Servicios Profesionales</h2>
+    <div class="grid">
+      <div class="card fade slide-left">
+        <i class="fas fa-search"
+          style="font-size: 2.5rem; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem;"></i>
+        <h3>Auditorías Certificadas</h3>
+        <p>Auditorías internas y externas conforme normas internacionales ISO 19011, con auditores IRAM certificados.
+        </p>
+      </div>
+      <div class="card fade">
+        <i class="fas fa-cogs"
+          style="font-size: 2.5rem; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem;"></i>
+        <h3>Implementación ISO</h3>
+        <p>Desarrollo completo de sistemas de gestión desde cero hasta certificación exitosa.</p>
+      </div>
+      <div class="card fade slide-right">
+        <i class="fas fa-graduation-cap"
+          style="font-size: 2.5rem; background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem;"></i>
+        <h3>Capacitación Especializada</h3>
+        <p>Formación técnica acreditada para equipos de trabajo y responsables de calidad.</p>
+      </div>
+      <div class="card fade slide-left">
+        <i class="fas fa-ruler-combined"
+          style="font-size: 2.5rem; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem;"></i>
+        <h3>Metrología y Calibración</h3>
+        <p>Gestión completa de laboratorios y aseguramiento metrológico ISO/IEC 17025.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="trayectoria" class="container fade split">
+    <div class="fade slide-left">
+      <h2 class="section-title">Nuestra Trayectoria</h2>
+      <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-secondary);">
+        Experiencia consolidada trabajando con <strong>IRAM, CNEA y OAA</strong> en proyectos de alta exigencia técnica
+        y regulatoria.
+      </p>
+      <div style="margin-top: 2rem;">
+        <a href="#contacto" class="btn-primary">Comenzar Proyecto</a>
+      </div>
+    </div>
+    <div class="image-block fade slide-right"></div>
+  </section>
+
+  <section class="container fade">
+    <h2 class="section-title">Empresas que Confían en Nosotros</h2>
+    <div class="clients-grid">
+      <div class="client-logo">
+        <span style="font-weight: 700; color: var(--text-muted);">INDUSTRIA</span>
+      </div>
+      <div class="client-logo">
+        <span style="font-weight: 700; color: var(--text-muted);">LABORATORIOS</span>
+      </div>
+      <div class="client-logo">
+        <span style="font-weight: 700; color: var(--text-muted);">INGENIERÍA</span>
+      </div>
+      <div class="client-logo">
+        <span style="font-weight: 700; color: var(--text-muted);">METROLOGÍA</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="container fade">
+    <h2 class="section-title">Certificaciones y Acreditaciones</h2>
+    <div class="tags">
+      <span class="tag" style="background: var(--gradient-accent); border-color: var(--accent); color: #080808;">
+        <i class="fas fa-certificate"></i> IRAM
+      </span>
+      <span class="tag"
+        style="background: linear-gradient(135deg, #8f1f2b, #d8aa47); border-color: #d8aa47; color: white;">
+        <i class="fas fa-atom"></i> CNEA
+      </span>
+      <span class="tag"
+        style="background: linear-gradient(135deg, #161616, #d8aa47); border-color: #d8aa47; color: white;">
+        <i class="fas fa-building"></i> OAA
+      </span>
+      <span class="tag" style="background: var(--gradient-primary); border-color: var(--primary); color: #080808;">
+        <i class="fas fa-globe"></i> ISO Internacional
+      </span>
+    </div>
+  </section>
+
+  <section id="contacto" class="container fade">
+    <h2 class="section-title">Solicita tu Diagnóstico Gratuito</h2>
+    <form class="contact-form" action="https://formspree.io/f/xkoyzgoz" method="POST">
+      <div class="form-group">
+        <input type="text" id="nombre" name="nombre" placeholder=" " required>
+        <label for="nombre">Nombre completo</label>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" name="email" placeholder=" " required>
+        <label for="email">Correo electrónico</label>
+      </div>
+      <div class="form-group">
+        <textarea id="mensaje" name="mensaje" rows="5" placeholder=" " required></textarea>
+        <label for="mensaje">¿En qué podemos ayudarte?</label>
+      </div>
+      <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+        <i class="fas fa-paper-plane"></i>
+        Enviar Mensaje
+      </button>
+      <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <a href="https://wa.me/5491130961544?text=Hola%20VAO%20Consultoría%2C%20me%20interesa%20solicitar%20un%20diagnóstico"
+    class="whatsapp" target="_blank" rel="noopener">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"
+        fill="white" />
+    </svg>
+  </a>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>VAO Consultoría</h4>
+          <p>Consultoría especializada en gestión de calidad, auditorías ISO y metrología con más de 15 años de
+            experiencia.</p>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <p><i class="fas fa-envelope"></i> contacto@vao.com</p>
+          <p><i class="fas fa-phone"></i> +54 11 0000 0000</p>
+          <p><i class="fas fa-map-marker-alt"></i> Buenos Aires, Argentina</p>
+        </div>
+        <div>
+          <h4>Síguenos</h4>
+          <a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          <a href="#"><i class="fab fa-instagram"></i> Instagram</a>
+          <a href="https://wa.me/5491130961544?text=Hola%20desde%20VAO%20Consultoría">
+            WhatsApp
+          </a>
+        </div>
+        <div>
+          <h4>Desarrollo Web</h4>
+          <p>Diseñado por <strong>Nova Digital Studio</strong></p>
+          <p><a href="#">www.novadigital.com</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © 2024 VAO Consultoría - Todos los derechos reservados |
+        <a href="#">Política de Privacidad</a> |
+        <a href="#">Términos de Servicio</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const navbar = document.getElementById('navbar');
+      const navLinks = document.querySelectorAll('.nav-link');
+      const sections = document.querySelectorAll('section[id]');
+      const fadeElements = document.querySelectorAll('.fade');
+      const contactForm = document.querySelector('.contact-form');
+      const formStatus = document.getElementById('form-status');
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const updateNavbar = () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+      };
+
+      const updateActiveLink = () => {
+        let current = '';
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          if (window.scrollY >= sectionTop - 220) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+        });
+      };
+
+      const updateMouseGlow = event => {
+        document.documentElement.style.setProperty('--mouse-x', `${event.clientX}px`);
+        document.documentElement.style.setProperty('--mouse-y', `${event.clientY}px`);
+        document.documentElement.style.setProperty('--cursor-opacity', '1');
+      };
+
+      window.addEventListener('scroll', () => {
+        updateNavbar();
+        updateActiveLink();
+      }, { passive: true });
+
+      window.addEventListener('pointermove', updateMouseGlow, { passive: true });
+      window.addEventListener('pointerleave', () => {
+        document.documentElement.style.setProperty('--cursor-opacity', '0');
+      });
+
+      if ('IntersectionObserver' in window && !prefersReducedMotion) {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('show');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        fadeElements.forEach(el => observer.observe(el));
+      } else {
+        fadeElements.forEach(el => el.classList.add('show'));
+      }
+
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const target = document.querySelector(this.getAttribute('href'));
+          if (!target) return;
+
+          e.preventDefault();
+          target.scrollIntoView({
+            behavior: prefersReducedMotion ? 'auto' : 'smooth',
+            block: 'start'
+          });
+        });
+      });
+
+      if (contactForm && formStatus) {
+        contactForm.addEventListener('submit', async event => {
+          event.preventDefault();
+
+          const submitButton = contactForm.querySelector('button[type="submit"]');
+          const originalButtonContent = submitButton.innerHTML;
+          const formData = new FormData(contactForm);
+
+          submitButton.disabled = true;
+          submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+          formStatus.className = 'form-status';
+          formStatus.textContent = '';
+
+          try {
+            const response = await fetch(contactForm.action, {
+              method: contactForm.method,
+              body: formData,
+              headers: {
+                'Accept': 'application/json'
+              }
+            });
+
+            if (!response.ok) {
+              throw new Error('No se pudo enviar el mensaje.');
+            }
+
+            contactForm.reset();
+            formStatus.textContent = 'Mensaje enviado correctamente. Gracias por contactarnos.';
+            formStatus.classList.add('show');
+
+            setTimeout(() => {
+              document.getElementById('home').scrollIntoView({
+                behavior: prefersReducedMotion ? 'auto' : 'smooth',
+                block: 'start'
+              });
+            }, 1800);
+          } catch (error) {
+            formStatus.textContent = 'No se pudo enviar el mensaje. Por favor intentá nuevamente o escribinos por WhatsApp.';
+            formStatus.classList.add('show', 'error');
+          } finally {
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalButtonContent;
+          }
+        });
+      }
+
+      updateNavbar();
+      updateActiveLink();
+    });
+  </script>
+
+</body>
+
+</html>
