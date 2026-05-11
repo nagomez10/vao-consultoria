@@ -1013,6 +1013,10 @@
         <label for="email">Correo electrónico</label>
       </div>
       <div class="form-group">
+        <input type="tel" id="telefono" name="telefono" placeholder=" " required>
+        <label for="telefono">Teléfono / WhatsApp</label>
+      </div>
+      <div class="form-group">
         <textarea id="mensaje" name="mensaje" rows="5" placeholder=" " required></textarea>
         <label for="mensaje">¿En qué podemos ayudarte?</label>
       </div>
@@ -1069,6 +1073,8 @@
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="public-supabase-config.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const navbar = document.getElementById('navbar');
@@ -1078,6 +1084,13 @@
       const contactForm = document.querySelector('.contact-form');
       const formStatus = document.getElementById('form-status');
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const publicCrmClient = window.supabase &&
+        window.PUBLIC_SUPABASE_URL &&
+        window.PUBLIC_SUPABASE_ANON_KEY &&
+        !window.PUBLIC_SUPABASE_URL.includes('PEGAR_ACA')
+          ? window.supabase.createClient(window.PUBLIC_SUPABASE_URL, window.PUBLIC_SUPABASE_ANON_KEY)
+          : null;
+      const normalizePhone = phone => phone.replace(/[^\d]/g, '');
 
       const updateNavbar = () => {
         navbar.classList.toggle('scrolled', window.scrollY > 50);
@@ -1161,6 +1174,26 @@
           formStatus.textContent = '';
 
           try {
+            const crmSave = publicCrmClient
+              ? publicCrmClient
+                .from('contacts')
+                .insert({
+                  name: formData.get('nombre').trim(),
+                  email: formData.get('email').trim(),
+                  phone: normalizePhone(formData.get('telefono') || ''),
+                  company: '',
+                  source: 'Web',
+                  status: 'nuevo',
+                  message: formData.get('mensaje').trim(),
+                  note: ''
+                })
+                .then(({ error }) => {
+                  if (error) {
+                    console.warn('El mensaje se envió por mail, pero no se pudo guardar en el CRM:', error.message);
+                  }
+                })
+              : Promise.resolve();
+
             const response = await fetch(contactForm.action, {
               method: contactForm.method,
               body: formData,
@@ -1172,6 +1205,8 @@
             if (!response.ok) {
               throw new Error('No se pudo enviar el mensaje.');
             }
+
+            await crmSave;
 
             contactForm.reset();
             formStatus.textContent = 'Mensaje enviado correctamente. Gracias por contactarnos.';
