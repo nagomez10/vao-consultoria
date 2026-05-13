@@ -579,6 +579,50 @@
       margin-bottom: 1.5rem;
     }
 
+    .contact-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+
+    .contact-copy .section-title {
+      text-align: left;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-copy .section-title::after {
+      left: 0;
+      transform: none;
+    }
+
+    .contact-copy p {
+      color: var(--text-secondary);
+      font-size: 1.12rem;
+      line-height: 1.8;
+      max-width: 560px;
+    }
+
+    .contact-image {
+      min-height: 360px;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(135deg, rgba(5, 5, 5, 0.08), rgba(216, 170, 71, 0.18)),
+        url('https://images.pexels.com/photos/4963437/pexels-photo-4963437.jpeg?auto=compress&cs=tinysrgb&w=1400') center/cover;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 35%, rgba(5, 5, 5, 0.62));
+    }
+
     .form-group input,
     .form-group textarea {
       width: 100%;
@@ -802,6 +846,28 @@
         gap: 2rem;
       }
 
+      .contact-intro {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-copy .section-title {
+        text-align: center;
+      }
+
+      .contact-copy .section-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .contact-copy p {
+        text-align: center;
+        margin-inline: auto;
+      }
+
+      .contact-image {
+        min-height: 280px;
+      }
+
       section {
         padding: 80px 0;
       }
@@ -1002,7 +1068,13 @@
   </section>
 
   <section id="contacto" class="container fade">
-    <h2 class="section-title">Solicita tu Diagnóstico Gratuito</h2>
+    <div class="contact-intro">
+      <div class="contact-copy">
+        <h2 class="section-title">Trabajemos juntos</h2>
+        <p>Contanos qué desafío de calidad, auditoría o metrología necesitás resolver. Te ayudamos a ordenar el camino técnico y convertirlo en un plan concreto.</p>
+      </div>
+      <div class="contact-image" role="img" aria-label="Dos profesionales estrechándose la mano"></div>
+    </div>
     <form class="contact-form" action="https://formspree.io/f/xkoyzgoz" method="POST">
       <div class="form-group">
         <input type="text" id="nombre" name="nombre" placeholder=" " required>
